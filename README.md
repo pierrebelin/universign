@@ -1,5 +1,7 @@
 # Universign Service
 
+This library is unofficial, not developed by Universign.
+
 If you need help to implements this service on your website, feel free to contact me at : contact@pierrebelin.fr
 
 This library is highly inspired by this one which is no longer maintain : https://github.com/globalis-ms/universign-service
