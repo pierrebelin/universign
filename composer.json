@@ -1,0 +1,19 @@
+{
+	"name": "pierrebelin/universign",
+	"description": "PHP library for universign",
+	"type": "library",
+	"homepage": "https://github.com/pierrebelin/Universign",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Pierre Belin",
+			"email": "contact@pierrebelin.fr",
+			"homepage": "https://pierrebelin.fr/"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"PierreBelin\\Universign\\": "src"
+		}
+	}
+}
