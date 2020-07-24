@@ -2,11 +2,11 @@
 
 namespace PierreBelin\Universign;
 
+use PierreBelin\Universign\Request\TransactionRequest;
+
 require_once dirname(__DIR__) . '../../lib/xmlrpc/xmlrpc.inc';
 require_once dirname(__DIR__) . '../../lib/xmlrpc/xmlrpcs.inc';
 require_once dirname(__DIR__) . '../../lib/xmlrpc/xmlrpc_wrappers.inc';
-require_once dirname(__DIR__) . '/Request/Request/TransactionRequest.php';
-
 
 class Requester
 {
