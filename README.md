@@ -2,6 +2,8 @@
 
 If you need help to implements this service on your website, feel free to contact me at : contact@pierrebelin.fr
 
+This library is highly inspired by this one which is no longer maintain : https://github.com/globalis-ms/universign-service
+
 ## How to use
 
 You can copy-paste the following code and it will automatically connect you to your universign account.
@@ -17,10 +19,10 @@ $UNIVERSIGN_PROFILE = 'default'; // you don't have to change this one, if you wa
 ### Get your document
 
 ```php
-    $document = new TransactionDocument();
-    $document
-        ->setContent(file_get_contents('path/to/file/file.pdf'))
-        ->setName('Document name');
+$document = new TransactionDocument();
+$document
+    ->setContent(file_get_contents('path/to/file/file.pdf'))
+    ->setName('Document name');
 ```
 
 ### Create signature fields
@@ -65,10 +67,33 @@ $request
     ->setChainingMode(TransactionRequestChainingMode::CHAINING_MODE_WEB);
 ```
 
-### Request transaction
+### Transaction request
 
 ```php
 $requester = new Requester($ACCOUNT_USER_MAIL, $ACCOUNT_USER_PASSWORD, false);
 $requester->requestTransaction($request);
+```
+
+### Transaction response
+
+```php
+$transactionId = $response->getId();
+$transactionUrl = $response->getUrl();
+```
+
+## Issues
+
+### Classes not found
+
+Do not forget to include your autoload and all classes
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use PierreBelin\Universign\{
+    Request\TransactionDocument, 
+    Request\TransactionSigner, 
+    ...
+};
 ```
 

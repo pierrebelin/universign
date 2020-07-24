@@ -2,10 +2,13 @@
 
 namespace PierreBelin\Universign\Request;
 
-abstract class Base {
-    
-    protected $attributes = [];
+require_once dirname(__DIR__) . '/../lib/xmlrpc/xmlrpc.inc';
+require_once dirname(__DIR__) . '/../lib/xmlrpc/xmlrpcs.inc';
+require_once dirname(__DIR__) . '/../lib/xmlrpc/xmlrpc_wrappers.inc';
 
+abstract class Base 
+{
+    protected $attributes = [];
     protected $attributesTypes = [];
 
     public function getAttributes()
@@ -19,7 +22,7 @@ abstract class Base {
         foreach ($this->attributes as $key => $value) {
             $build[$key] = $this->buildRpcValue($value, $this->attributesTypes[$key]);
         }
-        return new xmlrpcval($build, 'struct');
+        return new \xmlrpcval($build, 'struct');
     }
 
     protected function buildRpcValue($value, $type = null)
@@ -29,32 +32,32 @@ abstract class Base {
         }
         switch ($type) {
             case 'string':
-                return new xmlrpcval($value, 'string');
+                return new \xmlrpcval($value, 'string');
             case 'base64':
-                return new xmlrpcval($value, 'base64');
+                return new \xmlrpcval($value, 'base64');
             case 'array':
                 $data = [];
                 foreach ($value as $v) {
                     $data[] = $this->buildRpcValue($v);
                 }
-                return new xmlrpcval($data, 'array');
+                return new \xmlrpcval($data, 'array');
             case 'double':
             case 'float':
-                return new xmlrpcval($value, 'double');
+                return new \xmlrpcval($value, 'double');
             case 'boolean':
             case 'bool':
-                return new xmlrpcval($value, 'boolean');
+                return new \xmlrpcval($value, 'boolean');
             case 'integer':
             case 'int':
-                return new xmlrpcval($value, 'int');
+                return new \xmlrpcval($value, 'int');
             default:
                 if ($value instanceof self) {
                     return $value->buildRpcValues();
                 }
                 if ($value instanceof \Datetime) {
-                    return new xmlrpcval($value, 'dateTime');
+                    return new \xmlrpcval($value, 'dateTime');
                 }
-                return new xmlrpcval($value);
+                return new \xmlrpcval($value);
         }
     }
 
