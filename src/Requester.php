@@ -2,6 +2,7 @@
 
 namespace PierreBelin\Universign;
 
+use Globalis\Universign\Response\TransactionDocument as ResponseTransactionDocument;
 use PierreBelin\Universign\Request\TransactionRequest;
 use PierreBelin\Universign\Response\TransactionResponse;
 use PierreBelin\Universign\Response\TransactionDocument;
@@ -36,11 +37,10 @@ class Requester
         $response = &$client->send($request);
 
         if (!$response->faultCode()) {
-            return new TransactionResponse($response);
+            return new TransactionResponse($response->value());
         } 
-        //error
-        print 'An error occurred: ';
-        print 'Code: ' . $response->faultCode(). " Reason: '" . $response->faultString();
+
+        $this->printError($response);
     }
     
     public function getDocumentsByCustomId($customId)
@@ -49,19 +49,17 @@ class Requester
         $request = new \xmlrpcmsg('requester.getDocumentsByCustomId', [new \xmlrpcval($customId, 'string')]);
         $response = &$client->send($request);
 
-        var_dump($response); die;
-
         if (!$response->faultCode()) {
-            
-            // foreach ($values as $key => $value) {
-            //     $data[] = new TransactionDocument($value);
-            // }
+            $nbDocuments = $response->value()->arraysize();
 
-            return new TransactionResponse($response);
+            for($i = 0; $i < $nbDocuments; $i++){
+                $data[] = new TransactionDocument($response->value()->arraymem($i));
+            }
+
+            return $data;
         } 
-        //error
-        print 'An error occurred: ';
-        print 'Code: ' . $response->faultCode(). " Reason: '" . $response->faultString();
+
+        $this->printError($response);
     }
 
     public function getDocuments($transactionId)
@@ -70,17 +68,19 @@ class Requester
         $request = new \xmlrpcmsg('requester.getDocuments', [new \xmlrpcval($transactionId, 'string')]);
         $response = &$client->send($request);
 
-        var_dump($response); die;
-
         if (!$response->faultCode()) {
-            
-            // foreach ($values as $key => $value) {
-            //     $data[] = new TransactionDocument($value);
-            // }
+            $nbDocuments = $response->value()->arraysize();
 
-            return new TransactionResponse($response);
+            for($i = 0; $i < $nbDocuments; $i++){
+                $data[] = new TransactionDocument($response->value()->arraymem($i));
+            }
+
+            return $data;
         } 
-        //error
+        $this->printError($response);
+    }
+
+    private function printError($response) {
         print 'An error occurred: ';
         print 'Code: ' . $response->faultCode(). " Reason: '" . $response->faultString();
     }

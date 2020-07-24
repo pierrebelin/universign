@@ -17,25 +17,25 @@ abstract class Base
 
     protected $attributes = [];
 
-    public function __construct(\xmlrpcresp $values)
+    public function __construct(\xmlrpcval $values)
     {
-        // foreach ($this->attributesTypes as $key => $value) {
-            $this->attributes = $this->parseValue($values->value(), null);
-        // }
+        foreach ($this->attributesTypes as $key => $value) {
+            $this->attributes = $this->parseValue($values, null);
+        }
     }
 
     protected function parseValue(\xmlrpcval $values, $key = null)
     {
-        // if (isset($key)) {
-        //     if (!$values[$key]) {
-        //         return null;
-        //     }
-        //     $values = $values[$key];
+        if (isset($key)) {
+            if (!$values[$key]) {
+                return null;
+            }
+            $values = $values[$key];
 
-        //     if (is_callable([$this, $this->attributesTypes[$key]])) {
-        //         return $this->{$this->attributesTypes[$key]}($values);
-        //     }
-        // }
+            if (is_callable([$this, $this->attributesTypes[$key]])) {
+                return $this->{$this->attributesTypes[$key]}($values);
+            }
+        }
         switch ($values->scalartyp()) {
             case 'dateTime.iso8601':
                 return Datetime::createFromFormat('Ymd\TH:i:s', $values->scalarval(), new DateTimeZone('UTC'));

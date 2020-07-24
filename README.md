@@ -81,6 +81,13 @@ $transactionId = $response->getId();
 $transactionUrl = $response->getUrl();
 ```
 
+### Get documents
+
+```php
+$response = $requester->getDocuments('TRANSACTIONID');
+$response = $requester->getDocumentsByCustomId('CUSTOMID');
+```
+
 ## Issues
 
 ### Classes not found
