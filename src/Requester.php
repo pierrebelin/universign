@@ -4,6 +4,7 @@ namespace PierreBelin\Universign;
 
 use PierreBelin\Universign\Request\TransactionRequest;
 use PierreBelin\Universign\Response\TransactionResponse;
+use PierreBelin\Universign\Response\TransactionDocument;
 
 require_once dirname(__DIR__) . '/lib/xmlrpc/xmlrpc.inc';
 require_once dirname(__DIR__) . '/lib/xmlrpc/xmlrpcs.inc';
@@ -34,9 +35,49 @@ class Requester
         $request = new \xmlrpcmsg('requester.requestTransaction', [$transactionRequest->buildRpcValues()]);
         $response = &$client->send($request);
 
-        // var_dump($transactionRequest->buildRpcValues()); die;
+        if (!$response->faultCode()) {
+            return new TransactionResponse($response);
+        } 
+        //error
+        print 'An error occurred: ';
+        print 'Code: ' . $response->faultCode(). " Reason: '" . $response->faultString();
+    }
+    
+    public function getDocumentsByCustomId($customId)
+    {
+        $client = $this->getClient();
+        $request = new \xmlrpcmsg('requester.getDocumentsByCustomId', [new \xmlrpcval($customId, 'string')]);
+        $response = &$client->send($request);
+
+        var_dump($response); die;
 
         if (!$response->faultCode()) {
+            
+            // foreach ($values as $key => $value) {
+            //     $data[] = new TransactionDocument($value);
+            // }
+
+            return new TransactionResponse($response);
+        } 
+        //error
+        print 'An error occurred: ';
+        print 'Code: ' . $response->faultCode(). " Reason: '" . $response->faultString();
+    }
+
+    public function getDocuments($transactionId)
+    {
+        $client = $this->getClient();
+        $request = new \xmlrpcmsg('requester.getDocuments', [new \xmlrpcval($transactionId, 'string')]);
+        $response = &$client->send($request);
+
+        var_dump($response); die;
+
+        if (!$response->faultCode()) {
+            
+            // foreach ($values as $key => $value) {
+            //     $data[] = new TransactionDocument($value);
+            // }
+
             return new TransactionResponse($response);
         } 
         //error
