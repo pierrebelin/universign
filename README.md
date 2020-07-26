@@ -1,9 +1,9 @@
 # Universign Service
 
 [![Build Status](https://travis-ci.org/pierrebelin/universign.svg?branch=master)](https://travis-ci.org/pierrebelin/universign)
-[![Latest Stable Version](https://poser.pugx.org/phpunit/phpunit/v)](//packagist.org/packages/phpunit/phpunit) 
-[![Latest Unstable Version](https://poser.pugx.org/phpunit/phpunit/v/unstable)](//packagist.org/packages/phpunit/phpunit) 
-[![License](https://poser.pugx.org/phpunit/phpunit/license)](//packagist.org/packages/phpunit/phpunit)
+[![Latest Stable Version](https://poser.pugx.org/pierrebelin/universign/v)](//packagist.org/packages/pierrebelin/universign)
+[![Latest Unstable Version](https://poser.pugx.org/pierrebelin/universign/v/unstable)](//packagist.org/packages/pierrebelin/universign)
+[![License](https://poser.pugx.org/pierrebelin/universign/license)](//packagist.org/packages/pierrebelin/universign)
 [![Dependents](https://poser.pugx.org/pierrebelin/universign/dependents)](//packagist.org/packages/pierrebelin/universign)
 
 This library is unofficial, not developed by Universign.
