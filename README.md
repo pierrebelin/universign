@@ -1,6 +1,7 @@
 # Universign Service
 
 This library is unofficial, not developed by Universign.
+It only contains usual functions used for Universign : send documents for signature, download it.
 
 If you need help to implements this service on your website, feel free to contact me at : contact@pierrebelin.fr
 
