@@ -6,6 +6,7 @@ use Globalis\Universign\Response\TransactionDocument as ResponseTransactionDocum
 use PierreBelin\Universign\Request\TransactionRequest;
 use PierreBelin\Universign\Response\TransactionResponse;
 use PierreBelin\Universign\Response\TransactionDocument;
+use UnexpectedValueException;
 
 require_once dirname(__DIR__) . '/lib/xmlrpc/xmlrpc.inc';
 require_once dirname(__DIR__) . '/lib/xmlrpc/xmlrpcs.inc';
@@ -40,9 +41,15 @@ class Requester
             return new TransactionResponse($response->value());
         } 
 
-        $this->printError($response);
+        throw new UnexpectedValueException($response);
     }
     
+    /** 
+     * Get documents for customId
+     * 
+     * @param   string $customId
+     * @return  \PierreBelin\Universign\Response\TransactionDocument[]
+     */
     public function getDocumentsByCustomId($customId)
     {
         $client = $this->getClient();
@@ -59,9 +66,15 @@ class Requester
             return $data;
         } 
 
-        $this->printError($response);
+        throw new UnexpectedValueException($response);
     }
 
+    /** 
+     * Get documents for transactionId
+     * 
+     * @param   string $transactionId
+     * @return  \PierreBelin\Universign\Response\TransactionDocument[]
+     */
     public function getDocuments($transactionId)
     {
         $client = $this->getClient();
@@ -77,12 +90,8 @@ class Requester
 
             return $data;
         } 
-        $this->printError($response);
-    }
 
-    private function printError($response) {
-        print 'An error occurred: ';
-        print 'Code: ' . $response->faultCode(). " Reason: '" . $response->faultString();
+        throw new UnexpectedValueException($response);
     }
 
     private function getURLRequest() 
