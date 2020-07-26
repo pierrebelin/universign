@@ -1,6 +1,13 @@
 # Universign Service
 
+[![Build Status](https://travis-ci.org/pierrebelin/universign.svg?branch=master)](https://travis-ci.org/pierrebelin/universign)
+[![Latest Stable Version](https://poser.pugx.org/phpunit/phpunit/v)](//packagist.org/packages/phpunit/phpunit) 
+[![Latest Unstable Version](https://poser.pugx.org/phpunit/phpunit/v/unstable)](//packagist.org/packages/phpunit/phpunit) 
+[![License](https://poser.pugx.org/phpunit/phpunit/license)](//packagist.org/packages/phpunit/phpunit)
+[![Dependents](https://poser.pugx.org/pierrebelin/universign/dependents)](//packagist.org/packages/pierrebelin/universign)
+
 This library is unofficial, not developed by Universign.
+It only contains usual functions used for Universign : send documents for signature, download it.
 
 If you need help to implements this service on your website, feel free to contact me at : contact@pierrebelin.fr
 
