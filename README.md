@@ -101,7 +101,7 @@ $response = $requester->getDocumentsByCustomId('CUSTOMID');
 
 Replace your document by :
 
-```
+```php
 $sepaFrom = new SEPAThirdParty();
 $sepaFrom
     ->setName('from')
