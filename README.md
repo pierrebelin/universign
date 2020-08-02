@@ -97,6 +97,42 @@ $response = $requester->getDocuments('TRANSACTIONID');
 $response = $requester->getDocumentsByCustomId('CUSTOMID');
 ```
 
+### Send SEPA
+
+Replace your document by :
+
+```
+$sepaFrom = new SEPAThirdParty();
+$sepaFrom
+    ->setName('from')
+    ->setAddress('this address')
+    ->setPostalCode('69001')
+    ->setCity('Lyon')
+    ->setCountry('France');
+
+$sepaTo = new SEPAThirdParty();
+$sepaTo
+    ->setName('to')
+    ->setAddress('to address')
+    ->setPostalCode('69002')
+    ->setCity('Lyon')
+    ->setCountry('France');
+
+$sepa = new SEPAData();
+$sepa
+    ->setIcs('XXXXXXXXXXXXX')
+    ->setIban('FR7616798000010000191892XXXX')
+    ->setBic('TRZOFR21XXX')
+    ->setDebtor($sepaFrom)
+    ->setCreditor($sepaTo);
+
+$document = new TransactionDocument();
+$document
+    ->setDocumentType(TransactionDocumentType::SEPA)
+    ->setName('SEPA')
+    ->setSEPAData($sepa);
+```
+
 ## Issues
 
 ### Classes not found
