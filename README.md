@@ -52,6 +52,7 @@ $signer
     ->setLastname('Belin')
     ->setEmailAddress('contact@pierrebelin.fr')
     ->setPhoneNum('0606060606')
+    ->setBirthDate('19900131T00:00:00') // This format is needed yyyymmddT00:00:00 as string for 31/01/1990
     ->setSuccessURL('https://www.universign.eu/fr/sign/success/')
     ->setCancelURL('https://www.universign.eu/fr/sign/cancel/')
     ->setFailURL('https://www.universign.eu/fr/sign/failed/')
@@ -70,10 +71,10 @@ $request
     ->setMustContactFirstSigner(false)
     ->setFinalDocSent(true)
     ->setDescription("This is my description")
-    ->setCertificateType(TransactionRequestCertificate::CERTIFICATE_SIMPLE)
+    ->setCertificateType(TransactionRequestCertificate::CERTIFICATE_CERTIFIED)
     ->setLanguage(TransactionRequestLanguage::FRENCH)
     ->setHandwrittenSignature(true)
-    ->setChainingMode(TransactionRequestChainingMode::CHAINING_MODE_WEB);
+    ->setChainingMode(TransactionRequestChainingMode::CHAINING_MODE_EMAIL);
 ```
 
 ### Transaction request

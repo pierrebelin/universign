@@ -67,12 +67,11 @@ abstract class Base
             case 'integer':
             case 'int':
                 return new \xmlrpcval($value, 'int');
+            case 'dateTime':
+                return new \xmlrpcval($value, 'dateTime.iso8601');
             default:
                 if ($value instanceof self) {
                     return $value->buildRpcValues();
-                }
-                if ($value instanceof \Datetime) {
-                    return new \xmlrpcval($value, 'dateTime');
                 }
                 return new \xmlrpcval($value);
         }
@@ -103,6 +102,7 @@ abstract class Base
 
         switch ($this->attributesTypes[$name]) {
             case 'base64':
+            case 'dateTime':
             case 'string':
                 if (!is_string($value)) {
                     throw new UnexpectedValueException("$name must be of the type string, " . gettype($value) . " given");

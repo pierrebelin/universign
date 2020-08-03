@@ -11,7 +11,7 @@ class TransactionSigner extends Base
         'organization' => 'string',
         'emailAddress' => 'string',
         'phoneNum' => 'string',
-        'birthDate' => 'DateTime',
+        'birthDate' => 'dateTime', // This format is needed yyyymmddT00:00:00 as string
         'successURL' => 'string',
         'cancelURL' => 'string',
         'failURL' => 'string',
