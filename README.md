@@ -1,4 +1,4 @@
-# Universign Service
+# Universign PHP Library
 
 [![Build Status](https://travis-ci.org/pierrebelin/universign.svg?branch=master)](https://travis-ci.org/pierrebelin/universign)
 [![Latest Stable Version](https://poser.pugx.org/pierrebelin/universign/v)](//packagist.org/packages/pierrebelin/universign)
