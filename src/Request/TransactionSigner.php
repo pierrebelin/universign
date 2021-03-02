@@ -15,12 +15,6 @@ class TransactionSigner extends Base
         'successURL' => 'string',
         'cancelURL' => 'string',
         'failURL' => 'string',
-        'signatureFields' => 'array',
     ];
 
-    public function addSignatureField(SignatureField $signatureField)
-    {
-        $this->attributes['signatureFields'][] = $signatureField;
-        return $this;
-    }
 }
