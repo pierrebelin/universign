@@ -21,5 +21,12 @@ class TransactionDocument extends Base
         'name'            => 'string',
         'title'           => 'string',
         'SEPAData' => 'PierreBelin\Universign\Request\SEPAData',
+        'signatureFields' => 'array',
     ];
+
+    public function addSignatureField(DocSignatureField  $docSignatureField)
+    {
+        $this->attributes['signatureFields'][] = $docSignatureField;
+        return $this;
+    }
 }
