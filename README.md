@@ -25,22 +25,26 @@ $ACCOUNT_USER_PASSWORD = 'xxxxxxxxx';
 $UNIVERSIGN_PROFILE = 'default'; // you don't have to change this one, if you want to, read the manual
 ```
 
+
+
+### Create signature fields
+
+```php
+$signatureField1 = new DocSignatureField();
+$signatureField1->setPage(1)
+                ->setX(10)
+                ->setY(230)
+                ->setSignerIndex(0);
+```
+
 ### Get your document
 
 ```php
 $document = new TransactionDocument();
 $document
     ->setContent(file_get_contents('path/to/file/file.pdf'))
+    ->addSignatureField($signatureField1) // you can add multiples times ->addSignatureField($signatureField2) etc...
     ->setName('Document name');
-```
-
-### Create signature fields
-
-```php
-$signatureField1 = new SignatureField();
-$signatureField1->setPage(1)
-    ->setX(50)
-    ->setY(100);
 ```
 
 ### Create signers
@@ -55,8 +59,8 @@ $signer
     ->setBirthDate('19900131T00:00:00') // This format is needed yyyymmddT00:00:00 as string for 31/01/1990
     ->setSuccessURL('https://www.universign.eu/fr/sign/success/')
     ->setCancelURL('https://www.universign.eu/fr/sign/cancel/')
-    ->setFailURL('https://www.universign.eu/fr/sign/failed/')
-    ->addSignatureField($signatureField1); // you can add multiples times ->addSignatureField($signatureField2) etc...
+    ->setFailURL('https://www.universign.eu/fr/sign/failed/');
+    
 ```
 
 ### Create transaction
