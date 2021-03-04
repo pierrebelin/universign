@@ -4,6 +4,7 @@ namespace PierreBelin\Universign;
 
 use Globalis\Universign\Response\TransactionDocument as ResponseTransactionDocument;
 use PierreBelin\Universign\Request\TransactionRequest;
+use PierreBelin\Universign\Response\TransactionInfo;
 use PierreBelin\Universign\Response\TransactionResponse;
 use PierreBelin\Universign\Response\TransactionDocument;
 use UnexpectedValueException;
@@ -93,6 +94,29 @@ class Requester
 
         throw new UnexpectedValueException($response);
     }
+
+
+    /**
+     * Get transaction info for transactionId
+     *
+     * @param   string $transactionId
+     * @return  \PierreBelin\Universign\Response\TransactionInfo[]
+     */
+    public function getTransactionInfo($transactionId)
+    {
+        $client = $this->getClient();
+        $request = new \xmlrpcmsg('requester.getTransactionInfo', [new \xmlrpcval($transactionId, 'string')]);
+        $response = &$client->send($request);
+
+        if (!$response->faultCode()) {
+            return new TransactionInfo($response->value());
+        }
+
+        throw new UnexpectedValueException($response);
+
+
+    }
+
 
     private function getURLRequest() 
     {
