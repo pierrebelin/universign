@@ -102,6 +102,12 @@ $response = $requester->getDocuments('TRANSACTIONID');
 $response = $requester->getDocumentsByCustomId('CUSTOMID');
 ```
 
+### Get Transaction info
+
+```php
+$response = $requester->getTransactionInfo('TRANSACTIONID');
+```
+
 ### Send SEPA
 
 Replace your document by :
