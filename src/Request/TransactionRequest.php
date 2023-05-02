@@ -31,6 +31,7 @@ class TransactionRequest extends Base
         'language' => 'string',
         'handwrittenSignature' => 'bool',
         'chainingMode' => 'string',
+        'finalDocCCeMails' => 'array'
     ];
 
     public function addSigner(TransactionSigner $signer)
@@ -42,6 +43,11 @@ class TransactionRequest extends Base
     public function addDocument(TransactionDocument $document)
     {
         $this->attributes['documents'][] = $document;
+        return $this;
+    }
+
+    public function addFinalDoCCeMails(string $email) {
+        $this->attributes['finalDocCCeMails'][] = $email;
         return $this;
     }
 }

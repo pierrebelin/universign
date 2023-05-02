@@ -12,6 +12,7 @@ use UnexpectedValueException;
 require_once dirname(__DIR__) . '/lib/xmlrpc/xmlrpc.inc';
 require_once dirname(__DIR__) . '/lib/xmlrpc/xmlrpcs.inc';
 require_once dirname(__DIR__) . '/lib/xmlrpc/xmlrpc_wrappers.inc';
+require_once dirname(__DIR__) . '/src/urls/XmlRPCToArray.php';
 
 class Requester
 {
@@ -115,6 +116,27 @@ class Requester
         throw new UnexpectedValueException($response);
 
 
+    }
+
+    /** 
+     * Get transactionInfos for customId
+     * 
+     * @param   string $customId
+     * @return  \PierreBelin\Universign\Response\TransactionDocument[]
+     */
+    public function getTransactionInfoByCustomId($customId)
+    {
+        $client = $this->getClient();
+        $request = new \xmlrpcmsg('requester.getTransactionInfoByCustomId', [new \xmlrpcval($customId, 'string')]);
+        $response = &$client->send($request);
+        
+        if (!$response->faultCode()) {
+            $resp_array = $response->value();
+
+            return \convert_xmlrpcval_to_array($resp_array);
+        } 
+
+        throw new UnexpectedValueException($response);
     }
 
 

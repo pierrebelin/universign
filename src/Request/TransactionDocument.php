@@ -24,7 +24,7 @@ class TransactionDocument extends Base
         'signatureFields' => 'array',
     ];
 
-    public function addSignatureField(DocSignatureField  $docSignatureField)
+    public function addSignatureField(DocSignatureField $docSignatureField)
     {
         $this->attributes['signatureFields'][] = $docSignatureField;
         return $this;

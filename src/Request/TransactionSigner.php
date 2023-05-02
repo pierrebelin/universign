@@ -16,5 +16,4 @@ class TransactionSigner extends Base
         'cancelURL' => 'string',
         'failURL' => 'string',
     ];
-
 }
